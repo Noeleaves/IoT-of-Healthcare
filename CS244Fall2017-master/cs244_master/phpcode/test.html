@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script type="text/javascript">
+
+    request = new XMLHttpRequest();
+    function sendReq(){
+        var url = "post.php";
+        request.open("POST",url,true);
+        request.onreadystatechange= updatePage;
+        request.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
+        request.send("name=12345678");
+    }
+
+    function updatePage(){
+        if(request.readyState == 4){
+            if(request.status == 200){
+                var response = request.responseText;
+                document.getElementById('testfield').innerHTML = response;
+            }
+        }
+    }
+    </script>
+
+</head>
+<body>
+    <button onclick="sendReq()">test</button>
+    <div id="testfield"></div>
+</body>
+</html>
